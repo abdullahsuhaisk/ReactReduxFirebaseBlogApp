@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BlogSummary = (props) => {
-    console.log(props);
+    //console.log(props);
     const { blog }= props
-    console.log(blog);
+    //console.log(blog);
     return(
         <div className="col-md-6">
             <div className="blog-post">
@@ -16,7 +16,7 @@ const BlogSummary = (props) => {
                 </blockquote>
                 <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
                 <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <Link to={'/'}><button className='btn btn-primary'>Devamını Oku</button></Link>
+                <Link to={'/blogdetail/'+blog.id}><button className='btn btn-primary'>Devamını Oku</button></Link>
             </div>
         </div> 
     )

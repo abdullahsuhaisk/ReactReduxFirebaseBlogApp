@@ -15,17 +15,18 @@ import fbConfig from './config/fbconfig';
 const store = createStore(rootReducer,
     compose(
       applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
-      reactReduxFirebase(fbConfig), // redux binding for firebase
+      reactReduxFirebase(fbConfig,{attachAuthIsReady: true}), // redux binding for firebase
       reduxFirestore(fbConfig) // redux bindings for firestore
     )
   );
   //Wait to Render until firebase authReady
-
+store.firebaseAuthIsReady.then(()=>{
     ReactDOM.render(
         <Provider store= {store}>
             <App />
         </Provider>
             , document.getElementById('root'));
+})
 
 
 // If you want your app to work offline and load faster, you can change
