@@ -6,7 +6,6 @@ import SearchBox from './SearchBox';
 import {signOut} from '../../store/actions/authActions'
 
 const Navbar = (props) => {
-    console.log(props)
     const {auth}=props;
     return (
         <div>

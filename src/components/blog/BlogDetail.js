@@ -1,21 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 const BlogDetail = (props) => {
-    console.log(props);
-    return (
-        <div className="blog-post">
-            <h2 className="blog-post-title">Another blog post</h2>
-            <p className="blog-post-meta">December 23, 2013 by <a href="/">Jacob</a></p>
-
-            <p>Cum sociis natoque penatibus et magnis <a href="/">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            <blockquote>
-              <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </blockquote>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <button className='btn btn-primary'>Devamını Oku</button>
-        </div> 
-    )
+    console.log(props)
+    const { blog } =props;
+    console.log(blog)
+   
+    if(!blog)
+    return (<p>Loading ...</p>)
+    else {
+        return (
+            <div className="blog-post">
+                <h2 className="blog-post-title">{blog.title}</h2>
+                <p className="blog-post-meta">BLOG DATE HERE <a href="/"> {blog.author}</a></p>
+                <p className="blog-post-content">{blog.content}</p>
+            </div> 
+        )
+    }
 }
-
-export default BlogDetail;
+const mapStateToProps = (state, ownProps ) => {
+    console.log(ownProps);
+    console.log(state)
+    const id = ownProps.match.params.id;
+    //console.log(id)
+    const blogss = state.firestore.data.Blog
+    const blog = blogss ? blogss[id] : null
+    return {
+        blog: blog
+    }
+}
+//fireStore connect statemde blog nesnesi olmasına yarar
+export default compose(
+    connect(mapStateToProps),firestoreConnect(
+        [{collection:'Blog'}])
+)(BlogDetail);

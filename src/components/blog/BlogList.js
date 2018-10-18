@@ -4,7 +4,7 @@ import BlogSummary from './BlogSummery';
 class BlogList extends React.Component {
     render(){
         //console.log(this.props);
-        const blogs = this.props.blogs.blogs
+        const blogs = this.props.blogs
         //console.log(blogs);
 
         return (
