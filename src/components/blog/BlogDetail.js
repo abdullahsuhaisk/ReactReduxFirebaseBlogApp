@@ -4,10 +4,10 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
 const BlogDetail = (props) => {
-    console.log(props)
+    //console.log(props)
     const { blog } =props;
-    console.log(blog)
-   
+    //console.log(blog)
+    //if dont use if statement you've issue cause second rendering blog obje set
     if(!blog)
     return (<p>Loading ...</p>)
     else {
@@ -21,8 +21,8 @@ const BlogDetail = (props) => {
     }
 }
 const mapStateToProps = (state, ownProps ) => {
-    console.log(ownProps);
-    console.log(state)
+    //console.log(ownProps);
+    //console.log(state)
     const id = ownProps.match.params.id;
     //console.log(id)
     const blogss = state.firestore.data.Blog
