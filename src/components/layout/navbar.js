@@ -41,9 +41,15 @@ const Navbar = (props) => {
                         <Link className="nav-link disabled" to="/Contact">Contact</Link>
                     </li>
                     {!auth.uid ? 
-                    <li className="nav-item">
-                        <Link className="nav-link disabled" to="/SignIn">Sıgn</Link>
-                    </li> : 
+                    <ul className="navbar-nav mr-left">
+                        <li className="nav-item">
+                            <Link className="nav-link disabled" to="/SignIn">Sıgn</Link>
+                        </li> 
+                        <li className="nav-item">
+                            <Link className="nav-link disabled" to="/login">Log On</Link>
+                        </li>
+                    </ul>
+                        : 
                     <li className="nav-item">
                         <a className="nav-link disabled" onClick={props.sigOut} href="/">Log Of</a>
                     </li>}

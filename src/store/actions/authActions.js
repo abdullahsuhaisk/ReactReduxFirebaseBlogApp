@@ -19,3 +19,25 @@ export const signOut = () => {
         })
     }
 }
+
+export const logOn = (newUser) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+        firebase.auth().createUserWithEmailAndPassword(
+            newUser.email,
+            newUser.password
+        ).then((response) => {
+            console.log(response);
+            firestore.collection('users').doc(response.user.uid).set({
+                name:newUser.name,
+                email:newUser.email,
+                interest:newUser.interest
+            })
+        }).then(()=>{
+            dispatch({type:'LOGON_SUCCESS'})
+        }).catch((err)=> {
+            dispatch({type:'LOGON_ERROR',err})
+        })
+    }
+}
