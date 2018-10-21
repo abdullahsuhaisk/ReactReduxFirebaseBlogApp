@@ -26,7 +26,8 @@ const mapStateToProps = (state) => {
   return {
     firebase:state.firebase,
     auth: state.firebase.auth,
-    blogs: state.firestore.ordered.Blog
+    blogs: state.firestore.ordered.Blog,
+    profile:state.firebase.profile
   }
 }
 export default compose(connect(mapStateToProps),firestoreConnect([{ collection: 'Blog' }]))(Dashboard);

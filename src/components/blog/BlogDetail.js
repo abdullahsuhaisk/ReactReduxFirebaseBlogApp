@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import BlogComment from './BlogComment';
 
 const BlogDetail = (props) => {
     //console.log(props)
+    const id = props.match.params.id;
+    //console.log(id)
     const { blog } =props;
     //console.log(blog)
     //if dont use if statement you've issue cause second rendering blog obje set
@@ -16,6 +19,7 @@ const BlogDetail = (props) => {
                 <h2 className="blog-post-title">{blog.title}</h2>
                 <p className="blog-post-meta">BLOG DATE HERE <a href="/"> {blog.author}</a></p>
                 <p className="blog-post-content">{blog.content}</p>
+                <BlogComment blogId={id} />
             </div> 
         )
     }
