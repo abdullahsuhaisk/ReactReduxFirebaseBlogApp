@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import BlogComment from './BlogComment';
+import moment from 'moment';
 
 const BlogDetail = (props) => {
     //console.log(props)
@@ -17,7 +18,7 @@ const BlogDetail = (props) => {
         return (
             <div className="blog-post">
                 <h2 className="blog-post-title">{blog.title}</h2>
-                <p className="blog-post-meta">BLOG DATE HERE <a href="/"> {blog.author}</a></p>
+                <p className="blog-post-meta">{moment(blog.date.toDate()).calendar()} <a href="/"> {blog.author}</a></p>
                 <p className="blog-post-content">{blog.content}</p>
                 <BlogComment blogId={id} />
             </div> 

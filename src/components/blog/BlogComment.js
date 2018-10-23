@@ -20,12 +20,13 @@ class BlogComment extends React.Component {
     }
 render() {
     console.log(this.props);
-    const {comments,blogId}=this.props;
-    console.log(comments);
+    const {comments, blogId, auth}=this.props;
+    //console.log(comments);
+    
 
     return (
-        <div>
-            <div className="container border border-primary ">
+        <div className="border border-primary">
+            <div className="container">
                 {comments && comments.map(comment => {
                     return (
                         comment.blogId === blogId ?<div className="d-flex justify-content" key={comment.id}>{comment.comment}</div> : null
@@ -33,19 +34,21 @@ render() {
                 })} 
                 <br />
             </div>
-        <div className="row bg-light">
-            <div className="col-md-9 bg-white">
-                <form className="form-group">
-                    <div className="form-group">
-                        <input id="comment" type="text" className="form-control" placeholder="Yorumunuzu giriniz" onChange={this.handleChange}/>
-                    </div>
-                </form>
-            </div>
+            {auth ?         
+            <div className="row bg-light">
+                <div className="col-md-9 bg-white">
+                    <form className="form-group">
+                        <div className="form-group">
+                            <input id="comment" type="text" className="form-control" placeholder="Yorumunuzu giriniz" onChange={this.handleChange}/>
+                        </div>
+                    </form>
+                </div>
             <div className="col-md-3 bg-white">
                 <button className="btn btn-primary" onClick={this.handleClick}>Gönder</button>
             </div>
-          </div>
-        </div>
+          </div> : null }
+        </div> 
+
     
       )
     }   
@@ -56,7 +59,8 @@ const mapStateToProps = (state, ownProps) => {
    // const id = ownProps.blogId;
     const comments = state.firestore.ordered.Comments;
     return{
-        comments:comments
+        comments:comments,
+        auth: state.firebase.auth.uid
     }
 }
 const mapDispatchToProps = (dispatch) => {
