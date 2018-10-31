@@ -8,7 +8,8 @@ import signIn from './auth/signIn';
 import Login from './auth/Login';
 import AddBlog from './admin/AddBlog';
 import Contact from './Contact';
-//import Cv from './Cv';
+import CkEditor from './admin/ckEditor'
+import Cv from './Cv';
 
 class App extends Component {
   render() {
@@ -26,7 +27,9 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route exact path="/admin/addblog" component ={AddBlog} />
           <Route exact path="/Contact" component ={Contact} />
-
+          <Route exact path="/Cv" component ={Cv} />
+          
+          <Route path="/ck" component={CkEditor} />
         </Switch>
         </div>
       </BrowserRouter>

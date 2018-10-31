@@ -10,7 +10,7 @@ const BlogDetail = (props) => {
     const id = props.match.params.id;
     //console.log(id)
     const { blog } =props;
-    //console.log(blog)
+    console.log(blog)
     //if dont use if statement you've issue cause second rendering blog obje set
     if(!blog)
     return (<p>Loading ...</p>)

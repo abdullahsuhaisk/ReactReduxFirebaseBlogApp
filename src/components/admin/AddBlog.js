@@ -3,6 +3,7 @@ import { blogAdd } from '../../store/actions/blogAction';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+
  class AddBlog extends React.Component {
     state ={
         title:'',
