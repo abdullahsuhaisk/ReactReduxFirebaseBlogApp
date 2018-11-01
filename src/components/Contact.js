@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import * as emailjs from 'emailjs-com';
+import { Redirect } from 'react-router-dom';
 
  class Contact extends Component {
      //Contact Page
@@ -8,7 +10,8 @@ import React, { Component } from 'react'
        name:'',
        phone:'',
        email:'',
-       message:''
+       message:'',
+       redirect:0,
      }
      handleChange = (e) => {
        this.setState ({
@@ -18,8 +21,17 @@ import React, { Component } from 'react'
      handleClick = (e) => {
        e.preventDefault();
        console.log(this.state);
+       emailjs.send('gmail','blogcontact',this.state,'user_Aj1fN92l33sZmeWIxKbUL').then((response) => {
+         console.log('Succes',response.status, response.text);
+         this.setState({
+           redirect:1
+         })
+       }).catch(err=>{
+         console.log('erorr',err)
+       })
      }
   render() {
+    if(this.state.redirect === 1) return (<Redirect to='/' />)
     return (
       <div className="container">
         <br />
@@ -36,8 +48,8 @@ import React, { Component } from 'react'
                 </form>
             </div>
             <div className="col-md4">
-              <div className="card text-white bg-info mb-3" style={{"max-width":"18rem;"}}>
-              <img className="card-img-top" src="https://s3.amazonaws.com/lowres.cartoonstock.com/children-math-math_student-maths_student-percent-percentages-jlvn607_low.jpg" alt="Card image cap" />
+              <div className="card text-white bg-info mb-3" style={{width:"18rem"}}>
+              <img className="card-img-top" src={require('./CvAssets/images/profile.jpg')} style={{width:"18rem"}} />
                 <div className="card-header">A.Süha Işık</div>
                 <div className="card-body">
                   <h5 className="card-title">Full Stack & Mobile Developer</h5>
