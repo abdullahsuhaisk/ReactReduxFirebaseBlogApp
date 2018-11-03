@@ -1,4 +1,5 @@
 import React from 'react';
+//import { compose } from 'redux';
 import { blogAdd } from '../../store/actions/blogAction';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -59,7 +60,7 @@ import { Redirect } from 'react-router-dom';
  
 }
 const mapStateToProps = (state) => {
-    console.log(state);
+    //console.log(state);
     return {
         auth:state.firebase.auth
     }

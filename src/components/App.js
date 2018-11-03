@@ -10,6 +10,7 @@ import AddBlog from './admin/AddBlog';
 import Contact from './Contact';
 import CkEditor from './admin/ckEditor'
 import Cv from './Cv';
+import adminDasboard from './admin/adminDasboard';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
           <Route exact path="/blogdetail/:id" component={BlogDetail} />
           <Route path="/SignIn" component={signIn} />
           <Route path="/login" component={Login} />
+          <Route exact path="/admin" component={adminDasboard} />
           <Route exact path="/admin/addblog" component ={AddBlog} />
           <Route exact path="/Contact" component ={Contact} />
           <Route exact path="/Cv" component ={Cv} />

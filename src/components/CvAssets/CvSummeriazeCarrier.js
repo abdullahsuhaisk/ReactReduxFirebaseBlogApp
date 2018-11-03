@@ -11,7 +11,7 @@ const CvSummeriazeCarrier = (props) => {
 							<p className="mb-0">	Loading...</p>
 							</div>
 				</section>
-						)}
+				)}
 	else {
  		return(		
 	<section className="resume-section summary-section mb-5">
