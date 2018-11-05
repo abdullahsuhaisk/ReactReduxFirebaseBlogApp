@@ -7,7 +7,6 @@ import {firestoreConnect} from 'react-redux-firebase';
 import {isAdmin} from '../../store/actions/adminActions';
 import AdminMembers from './adminMembers';
 import AdminComments from './adminComments';
-import AddBlog from './AddBlog';
 import AdminBlogs from './adminBlogs';
 
  class adminDasboard extends Component {
@@ -37,16 +36,11 @@ import AdminBlogs from './adminBlogs';
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-8">
+                        <div className="col-md-12">
                             <AdminBlogs articles={articles} />
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h4 className="center">Add blog</h4>
-                            <AddBlog />
-                        </div>
-                    </div>
+
                 </div>
 
                 )            

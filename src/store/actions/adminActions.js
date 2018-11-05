@@ -7,6 +7,8 @@ export const isAdmin = () => {
         }).catch((err)=>{
             dispatch({type:'ADMIN_LOGIN_ERROR',payload:err})
         })
+    }
+}
         //const firebase = getFirebase();
         // firebase.firestore().collection('admin').where(
         //     'docUid','==',userId
@@ -29,6 +31,7 @@ export const isAdmin = () => {
         // }).catch(err=>{
         //     dispatch({type:'ADMIN_LOGIN_ERROR',payload:err})
         // })
-    }
+    
     // Thats code snippet doesn't working well first dispatct true after default i didn't solve it
-}
+
+

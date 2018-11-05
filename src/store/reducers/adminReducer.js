@@ -1,6 +1,6 @@
 const initState = {
     adminError: null,
-    isAdmin: false
+    isAdmin: false,
 }
 const adminReducer = (state=initState, actions) => {
     switch (actions.type) {

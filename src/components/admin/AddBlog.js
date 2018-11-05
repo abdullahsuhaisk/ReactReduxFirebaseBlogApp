@@ -29,6 +29,8 @@ import { Redirect } from 'react-router-dom';
     const {uid}= this.props.auth;
     if(!uid) return <Redirect to='/signIn/' />
     return (
+        <div>
+        <h4 className="text-center">Add blog</h4>
         <div className="blog-post">
         <form>
             <div className="form-group">
@@ -38,7 +40,7 @@ import { Redirect } from 'react-router-dom';
             <div className="form-group">
                 <label htmlFor="category">Category</label>
                 <select name="category" id="category" className="form-control" onChange={this.handleChange}>
-                    sec
+                    Choose
                     <option>Front-End</option>
                     <option>Back-End</option>
                     <option>Game</option>
@@ -55,6 +57,8 @@ import { Redirect } from 'react-router-dom';
             <button className="btn btn-primary" onClick={this.handleClick}>Done</button>
         </form>
         </div>
+        </div>
+        
       )
   }
  

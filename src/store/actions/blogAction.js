@@ -31,3 +31,26 @@ export const AddComment = (newComment) => {
         })
     }
 }
+export const BlogUpdateStart = (BlogId) => {
+    return (dispatch,getState,{getFirebase,getFirestore}) => {
+        const firestore = getFirestore(); //involked firestore
+        firestore.collection('Blog').doc(BlogId).get().then((doc)=>{
+            dispatch({type:'BLOG_UPDATE_START',payload:doc.data(),BlogId})
+        })
+    }
+}
+export const BlogUpdate = (Blog) => {
+    return(dispatch,getState,{getFirebase,getFirestore})=> {
+        const firestore = getFirestore(); //involke firestore
+        firestore.collection('Blog').doc(Blog.id).update(Blog).then(()=>{
+            dispatch({type:'BLOG_UPDATE_SUCCES'})
+        }).catch(err=>{
+            dispatch({type:'BLOG_UPDATE_FAILDED',payload:err})
+        })
+    }
+}
+export const cancelUpdateBlog = () => {
+    return(dispatch) => {
+        dispatch({type:'BLOG_UPDATE_CANCEL'})
+    }
+}

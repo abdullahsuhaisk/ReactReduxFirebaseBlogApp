@@ -1,5 +1,12 @@
 const initState = {
     //Add comment error statement
+    title:'',
+    category:'',
+    content:'',
+    date: new Date(),
+    metatag:'',
+    id:'',
+    update:0
 };
 
 const blogReducer = (state=initState,action) => {
@@ -17,10 +24,36 @@ const blogReducer = (state=initState,action) => {
         case 'ADD_COMMENT_ERROR':
             console.log('Comment adding failded',action.err)
             return state;
-            
+        case 'BLOG_UPDATE_START':
+            console.log(action)
+            return({
+                ...state,
+                isAdmin:false,
+                title:action.payload.title,
+                category:action.payload.category,
+                content:action.payload.content,
+                metatag:action.payload.metatag,
+                id:action.BlogId,
+                update:1
+            })
+        case 'BLOG_UPDATE_SUCCES':
+            console.log('Update success');
+            return({
+                ...state,
+                update:0
+            })
+        case 'BLOG_UPDATE_FAILDED':
+            return({
+                ...state,
+                update:0
+            })
+        case 'BLOG_UPDATE_CANCEL':
+            return({
+                ...state,
+                update:0
+            })
         default:
             return state;
-           
     }
 }
 export default blogReducer;
