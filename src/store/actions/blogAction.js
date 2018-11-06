@@ -54,3 +54,13 @@ export const cancelUpdateBlog = () => {
         dispatch({type:'BLOG_UPDATE_CANCEL'})
     }
 }
+export const getCategories = () => {
+    return(dispatch,getState,{getFirebase,getFirestore})=> {
+        const firestore = getFirebase().firestore();
+        firestore.collection('category').get().then((querySnapShot)=>{
+            querySnapShot.forEach(doc=>{
+                dispatch({type:'GET_CATEGORY',payload:doc.data()})
+            })
+        })
+    }
+}

@@ -6,7 +6,8 @@ const initState = {
     date: new Date(),
     metatag:'',
     id:'',
-    update:0
+    update:0,
+    categories:[]
 };
 
 const blogReducer = (state=initState,action) => {
@@ -51,6 +52,12 @@ const blogReducer = (state=initState,action) => {
             return({
                 ...state,
                 update:0
+            })
+        case 'GET_CATEGORY':
+            return({
+                ...state,
+                categories: [...state.categories, action.payload.name] 
+                // ? come double category
             })
         default:
             return state;

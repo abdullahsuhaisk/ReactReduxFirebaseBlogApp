@@ -6,10 +6,12 @@ import { firestoreConnect } from 'react-redux-firebase';
 import SearchBox from './SearchBox';
 
 import {signOut} from '../../store/actions/authActions'
+import {getCategories} from '../../store/actions/blogAction';
 
 const Navbar = (props) => {
-    const {auth,category}=props;
-    console.log(props)
+    const {auth,category,getCategories}=props;
+    getCategories();
+    //console.log(props)
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -44,7 +46,7 @@ const Navbar = (props) => {
                         <NavLink className="nav-link disabled" to="/Cv">Cv</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link disabled" to="/About">About</NavLink>
+                        <NavLink className="nav-link disabled" to="/Aboutme">About</NavLink>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link disabled" to="/Contact">Contact</Link>
@@ -72,14 +74,16 @@ const Navbar = (props) => {
 }
 
 const mapStateToProp = (state) => {
+    //console.log(state)
     return{
         auth:state.firebase.auth,
-        category:state.firestore.ordered.category
+        category:state.firestore.ordered.category,
     }
 }
 const mapDispatchToProp = (dispatch) => {
     return{
-        sigOut : () => dispatch(signOut())
+        sigOut : () => dispatch(signOut()),
+        getCategories: () => dispatch(getCategories())
     }
 }
 export default compose(connect(mapStateToProp, mapDispatchToProp),firestoreConnect([

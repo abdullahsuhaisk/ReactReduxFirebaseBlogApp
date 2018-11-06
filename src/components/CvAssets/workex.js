@@ -47,21 +47,21 @@ import React from 'react'
 									    
 									    <div className="resume-timeline-item-header mb-2">
 										    <div className="d-flex flex-column flex-md-row">
-										        <h3 className="resume-position-title font-weight-bold mb-1">Senior Software Developer</h3>
-										        <div className="resume-company-name ml-auto">Google</div>
+										        <h3 className="resume-position-title font-weight-bold mb-1">Junior Software Developer</h3>
+										        <div className="resume-company-name ml-auto">YesilIsikBilisim</div>
 										    </div>
-										    <div className="resume-position-time">2014 - 2018</div>
+										    <div className="resume-position-time">2014 - 2017</div>
 									    </div>
 									    <div className="resume-timeline-item-desc">
-										    <p>Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede justo, fringilla vel.</p>
+										    <p>I ve worked Free Lancer to web project.That projects generally basic web site</p>
 										    <h4 className="resume-timeline-item-desc-heading font-weight-bold">Achievements</h4>
-										    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+										    <p>Use joomla, wordpress and help develop moduls</p>
 										    <h4 className="resume-timeline-item-desc-heading font-weight-bold">Technologies used:</h4>
 										    <ul className="list-inline">
-											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">React</span></li>
-											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">Redux</span></li>
-											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">Django</span></li>
-											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">Webpack</span></li>
+											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">Php</span></li>
+											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">Seo</span></li>
+											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">Joomla</span></li>
+											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">Wordpress</span></li>
 											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">HTML/SASS</span></li>
 											    <li className="list-inline-item"><span className="badge badge-primary badge-pill">MySQL</span></li>
 										    </ul>

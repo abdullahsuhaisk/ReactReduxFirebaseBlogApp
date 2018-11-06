@@ -12,6 +12,7 @@ import CkEditor from './admin/ckEditor'
 import Cv from './Cv';
 import adminDasboard from './admin/adminDasboard';
 import CategoryList from './dashboard/CategoryList';
+import About from './About';
 
 class App extends Component {
   render() {
@@ -26,13 +27,17 @@ class App extends Component {
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/blogdetail/:id" component={BlogDetail} />
           <Route exact path="/category/:id" component={CategoryList} />
+
           <Route path="/SignIn" component={signIn} />
           <Route path="/login" component={Login} />
+
           <Route exact path="/admin" component={adminDasboard} />
           <Route exact path="/admin/addblog" component ={AddBlog} />
+
           <Route exact path="/Contact" component ={Contact} />
           <Route exact path="/Cv" component ={Cv} />
-          
+          <Route exact path="/aboutMe" component={About} />
+
           <Route path="/ck" component={CkEditor} />
         </Switch>
         </div>

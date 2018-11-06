@@ -8,7 +8,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 
  class Dashboard extends Component {
   render() {
-    console.log(this.props);
+    //console.log(this.props);
 
     const {blogs,auth} = this.props
     //if members 've to required uncommend below line
@@ -30,4 +30,6 @@ const mapStateToProps = (state) => {
     profile:state.firebase.profile
   }
 }
-export default compose(connect(mapStateToProps),firestoreConnect([{ collection: 'Blog' }]))(Dashboard);
+export default compose(connect(mapStateToProps),firestoreConnect([
+  { collection: 'Blog',limit:10,orderBy:['date','desc'] }
+]))(Dashboard);
