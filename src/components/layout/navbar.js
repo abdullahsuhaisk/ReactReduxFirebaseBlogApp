@@ -1,12 +1,15 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {compose} from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import SearchBox from './SearchBox';
 
 import {signOut} from '../../store/actions/authActions'
 
 const Navbar = (props) => {
-    const {auth}=props;
+    const {auth,category}=props;
+    console.log(props)
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,13 +25,19 @@ const Navbar = (props) => {
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Blog
+                        Kategoriler
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <Link className="dropdown-item" to="/blog/category">Kategoriler</Link>
-                        <a className="dropdown-item" href="/">Front-End</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="/">Back-End</a>
+                        {
+                            category && category.map((item)=>{
+                                return (
+                                    <div key={item.id}>
+                                    <Link className="dropdown-item" to={/category/+item.id}>{item.name}</Link>
+                                    <div className="dropdown-divider"></div>
+                                    </div>
+                                )
+                            })
+                        }
                         </div>
                     </li>
                     <li className="nav-item left">
@@ -64,7 +73,8 @@ const Navbar = (props) => {
 
 const mapStateToProp = (state) => {
     return{
-        auth:state.firebase.auth
+        auth:state.firebase.auth,
+        category:state.firestore.ordered.category
     }
 }
 const mapDispatchToProp = (dispatch) => {
@@ -72,4 +82,6 @@ const mapDispatchToProp = (dispatch) => {
         sigOut : () => dispatch(signOut())
     }
 }
-export default connect(mapStateToProp, mapDispatchToProp)(Navbar);
+export default compose(connect(mapStateToProp, mapDispatchToProp),firestoreConnect([
+    {collection:'category'}
+]))(Navbar);

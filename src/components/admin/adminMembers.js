@@ -7,6 +7,7 @@ import React from 'react'
 
   return (
     <div>
+        <h4 className="text-center">Members</h4>
       <table className="table table-sm">
         <thead>
             <tr>

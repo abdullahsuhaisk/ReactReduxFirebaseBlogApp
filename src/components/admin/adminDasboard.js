@@ -32,7 +32,7 @@ import AdminBlogs from './adminBlogs';
                             <AdminComments  comments={comments}/>
                         </div>
                         <div className="col-md-4">
-
+                            <p>Notifications will come here</p>
                         </div>
                     </div>
                     <div className="row">
@@ -40,9 +40,7 @@ import AdminBlogs from './adminBlogs';
                             <AdminBlogs articles={articles} />
                         </div>
                     </div>
-
                 </div>
-
                 )            
             }
             else return(<p>Wrong Router</p>) 

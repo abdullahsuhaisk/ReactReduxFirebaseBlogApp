@@ -11,6 +11,7 @@ import Contact from './Contact';
 import CkEditor from './admin/ckEditor'
 import Cv from './Cv';
 import adminDasboard from './admin/adminDasboard';
+import CategoryList from './dashboard/CategoryList';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/blogdetail/:id" component={BlogDetail} />
+          <Route exact path="/category/:id" component={CategoryList} />
           <Route path="/SignIn" component={signIn} />
           <Route path="/login" component={Login} />
           <Route exact path="/admin" component={adminDasboard} />

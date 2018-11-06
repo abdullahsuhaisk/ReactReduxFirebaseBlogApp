@@ -75,10 +75,10 @@ import AddBlog from './AddBlog';
             </div>
             <div className="row">
                 <div className="col-md-4">
-                <button className="btn btn-primary" onClick={this.handleClick}>Update</button>
+                <button className="btn btn-primary btn-lg" onClick={this.handleClick}>Update</button>
                 </div>
                 <div className="col-md-4">
-                <button className="btn btn-danger" onClick={this.handleClickCancel}>Cancel</button> 
+                <button className="btn btn-danger btn-lg" onClick={this.handleClickCancel}>Cancel</button> 
                 </div>
                 <div className="col-md-4">
                 <button type="button" className="btn btn-warning">Warning</button>

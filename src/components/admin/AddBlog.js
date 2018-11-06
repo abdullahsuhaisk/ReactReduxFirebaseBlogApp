@@ -41,8 +41,8 @@ import { Redirect } from 'react-router-dom';
                 <label htmlFor="category">Category</label>
                 <select name="category" id="category" className="form-control" onChange={this.handleChange}>
                     Choose
-                    <option>Front-End</option>
-                    <option>Back-End</option>
+                    <option>front-end</option>
+                    <option>back-end</option>
                     <option>Game</option>
                 </select>
             </div>
