@@ -11,7 +11,7 @@ const BlogSummary = (props) => {
             <div className="blog-post">
                 <h2 className="blog-post-title">{blog.title}</h2>
                 <p className="blog-post-meta">{moment(blog.date.toDate()).calendar()} <a href="/">{blog.author}</a></p>
-                <p className="blog-post-content">{blog.content}</p>
+                <p className="blog-post-content">{blog.content.substr(0,300)+'...'}</p>
                 <Link to={'/blogdetail/'+blog.id}><button className='btn btn-primary'>Devamını Oku</button></Link>
             </div>
         </div> 
