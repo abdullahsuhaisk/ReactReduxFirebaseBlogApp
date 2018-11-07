@@ -10,16 +10,20 @@ const BlogDetail = (props) => {
     const id = props.match.params.id;
     //console.log(id)
     const { blog } =props;
+    
     console.log(blog)
     //if dont use if statement you've issue cause second rendering blog obje set
     if(!blog)
     return (<p>Loading ...</p>)
     else {
+        function createMarkup() {
+            return {__html: blog.content};
+          }
         return (
-            <div className="blog-post container text-center">
+            <div className="blog-post container text-center" >
                 <h2 className="blog-post-title">{blog.title}</h2>
                 <p className="blog-post-meta">{moment(blog.date.toDate()).calendar()} <a href="/"> {blog.author}</a></p>
-                <p className="blog-post-content">{blog.content}</p>
+                <div dangerouslySetInnerHTML={createMarkup()} />
                 <BlogComment blogId={id} />
             </div> 
         )

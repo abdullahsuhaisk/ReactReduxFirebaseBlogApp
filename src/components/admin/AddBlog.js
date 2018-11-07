@@ -3,6 +3,7 @@ import React from 'react';
 import { blogAdd } from '../../store/actions/blogAction';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import CKEditor from "react-ckeditor-component";
 
 
  class AddBlog extends React.Component {
@@ -24,6 +25,13 @@ import { Redirect } from 'react-router-dom';
         //console.log(this.state);
         this.props.addblog(this.state);
     }
+    onChangeCk = (evt) =>{
+        var newContent = evt.editor.getData();
+        this.setState({
+          content: newContent
+        })
+        console.log(this.state)
+      }
   render(){
       //Admin Logic will come here
     const {uid}= this.props.auth;
@@ -46,10 +54,13 @@ import { Redirect } from 'react-router-dom';
                     <option>Game</option>
                 </select>
             </div>
-            <div className="from-group">
-                <label htmlFor="content">Content</label>
-                <textarea name="content" id="content" cols="30" rows="10" className="form-control" onChange={this.handleChange}></textarea>
-            </div>
+            <CKEditor 
+              activeClass="p10" 
+              content={this.state.content} 
+              events={{
+                "change": this.onChangeCk
+              }}
+            />
             <div className="form-group">
                 <label htmlFor="metatag">MetaTag</label>
                 <input type="text" className="form-control" id='metatag' onChange={this.handleChange}/>
@@ -57,11 +68,9 @@ import { Redirect } from 'react-router-dom';
             <button className="btn btn-primary" onClick={this.handleClick}>Done</button>
         </form>
         </div>
-        </div>
-        
-      )
+        </div>   
+    )
   }
- 
 }
 const mapStateToProps = (state) => {
     //console.log(state);
