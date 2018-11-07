@@ -8,10 +8,11 @@ import {isAdmin} from '../../store/actions/adminActions';
 import AdminMembers from './adminMembers';
 import AdminComments from './adminComments';
 import AdminBlogs from './adminBlogs';
+import AdminNotifications from './adminNotifications';
 
  class adminDasboard extends Component {
     renderAdmin(adminDoc,userUid) {
-        const {users,comments,articles}=this.props;
+        const {users,comments,articles,noti}=this.props;
         //console.log(articles)
         if(adminDoc && userUid) {
             if(adminDoc.docUid === userUid) {
@@ -32,7 +33,7 @@ import AdminBlogs from './adminBlogs';
                             <AdminComments  comments={comments}/>
                         </div>
                         <div className="col-md-4">
-                            <p>Notifications will come here</p>
+                            <AdminNotifications noti={noti} />
                         </div>
                     </div>
                     <div className="row">
@@ -71,7 +72,8 @@ const mapStateToProps = (state) => {
         userId: state.firebase.auth.uid,
         users: state.firestore.ordered.users,
         comments: state.firestore.ordered.Comments,
-        articles : state.firestore.ordered.Blog
+        articles : state.firestore.ordered.Blog,
+        noti: state.firestore.ordered.notifications
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -83,6 +85,7 @@ export default compose(firestoreConnect([
     {collection: 'admin'},
     {collection: 'users'},
     {collection: 'Comments'},
-    {collection: 'Blog'}
+    {collection: 'Blog'},
+    {collection:'notifications',limit:6,orderBy:['time','desc']}
 
 ]),connect(mapStateToProps,mapDispatchToProps))(adminDasboard);
