@@ -34,7 +34,7 @@ import firebase from 'firebase'
                     <tr key={comment.id}>
                         <th scope="row">{counter}</th>
                         <td>{comment.userName}</td>
-                        <td>{comment.comment}</td>
+                        <td>{comment.comment.substr(0,25)}</td>
                         <td>
                             <button type="button" className="btn btn-danger btn-sm" onClick={(e)=>deleteClick(e,comment.id)}>Delete</button>
                         </td>

@@ -23,7 +23,8 @@ export const AddComment = (newComment) => {
             ...newComment,
             userId:userId,
             userName: userName,
-            userEmail: userEmail
+            userEmail: userEmail,
+            date:new Date()
         }).then(()=>{
             dispatch({type:'ADD_COMMENT_SUCCESS'})
         }).catch((err)=> {

@@ -6,7 +6,8 @@ import { AddComment } from '../../store/actions/blogAction';
 class BlogComment extends React.Component {
     state={
         comment:'',
-        blogId:this.props.blogId
+        blogId:this.props.blogId,
+        title:''
     }   
     handleChange = (e) => {
         this.setState({
@@ -25,19 +26,33 @@ render() {
     
 
     return (
-        <div className="border border-primary">
-            <div className="container">
+        <div className="">
+            <div class="list-group">
                 {comments && comments.map(comment => {
                     return (
-                        comment.blogId === blogId ?<div className="d-flex justify-content" key={comment.id}>{comment.comment}</div> : null
+                        comment.blogId === blogId ?
+                        <div className="list-group-item list-group-item-action flex-column align-items-start "  key={comment.id}>
+                            <div className="d-flex w-100 justify-content-between">
+                            <h5 className="mb-1">{comment.title}</h5>
+                            <small>{comment.email}</small>
+                            </div>
+                            <p className="mb-1">{comment.comment}</p>
+                            <small>{comment.userName}</small>
+                        </div>
+                        : 
+                        null
+
                     )
                 })} 
                 <br />
             </div>
             {auth ?         
-            <div className="row bg-light">
+            <div className="row bg-info text-white">
                 <div className="col-md-9 bg-white">
                     <form className="form-group">
+                        <div className="form-group">
+                            <input id="title" type="text" className="form-control" placeholder="Başlık giriniz" onChange={this.handleChange}/>
+                        </div>
                         <div className="form-group">
                             <input id="comment" type="text" className="form-control" placeholder="Yorumunuzu giriniz" onChange={this.handleChange}/>
                         </div>
@@ -49,7 +64,7 @@ render() {
           </div> : null }
         </div> 
 
-    
+
       )
     }   
 }

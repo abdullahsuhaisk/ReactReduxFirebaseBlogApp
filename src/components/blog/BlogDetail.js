@@ -16,7 +16,7 @@ const BlogDetail = (props) => {
     return (<p>Loading ...</p>)
     else {
         return (
-            <div className="blog-post">
+            <div className="blog-post container text-center">
                 <h2 className="blog-post-title">{blog.title}</h2>
                 <p className="blog-post-meta">{moment(blog.date.toDate()).calendar()} <a href="/"> {blog.author}</a></p>
                 <p className="blog-post-content">{blog.content}</p>
