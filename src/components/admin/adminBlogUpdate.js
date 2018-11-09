@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import AddBlog from './AddBlog';
 import CKEditor from "react-ckeditor-component";
-
+import {compose} from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 
  class adminBlogUpdate extends React.Component {
@@ -45,7 +46,7 @@ import CKEditor from "react-ckeditor-component";
     //console.log(this.state)
       //Admin Logic will come here
     const {uid}= this.props.auth;
-    const {updatedBlog} = this.props
+    const {updatedBlog,category} = this.props
     console.log(updatedBlog);
     if(!uid) return <Redirect to='/signIn/' />
     if(updatedBlog !== 0)
@@ -60,11 +61,14 @@ import CKEditor from "react-ckeditor-component";
             </div>
             <div className="form-group">
                 <label htmlFor="category">Category</label>
-                <select name="category" id="category" className="form-control" onChange={this.handleChange}>
+                <select name="category" id="category" className="form-control" onChange={this.handleChange} value="{this.state.category}">
                     {this.state.category}
-                    <option>Front-End</option>
-                    <option>Back-End</option>
-                    <option>Game</option>
+                    { category && category.map((item)=> {
+                        return (
+                            <option key={item.id} value={item.id}>{item.name}</option>
+
+                        )
+                    })}
                 </select>
             </div>
             <CKEditor 
@@ -102,7 +106,8 @@ const mapStateToProps = (state) => {
     //console.log(state);
     return {
         auth:state.firebase.auth,
-        updatedBlog:state.blogs.update
+        updatedBlog:state.blogs.update,
+        category: state.firestore.ordered.category
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -111,7 +116,8 @@ const mapDispatchToProps = (dispatch) => {
         cancelUpdateBlog : () => dispatch(cancelUpdateBlog())
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(adminBlogUpdate);
-
+export default compose(connect(mapStateToProps,mapDispatchToProps),firestoreConnect([
+    {collection:'category'}
+]))(adminBlogUpdate);
 
 // CK editor will come

@@ -4,6 +4,8 @@ import { blogAdd } from '../../store/actions/blogAction';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import CKEditor from "react-ckeditor-component";
+import {compose} from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 
  class AddBlog extends React.Component {
@@ -35,6 +37,7 @@ import CKEditor from "react-ckeditor-component";
   render(){
       //Admin Logic will come here
     const {uid}= this.props.auth;
+    const {category} =this.props;
     if(!uid) return <Redirect to='/signIn/' />
     return (
         <div>
@@ -48,10 +51,12 @@ import CKEditor from "react-ckeditor-component";
             <div className="form-group">
                 <label htmlFor="category">Category</label>
                 <select name="category" id="category" className="form-control" onChange={this.handleChange}>
-                    Choose
-                    <option>front-end</option>
-                    <option>back-end</option>
-                    <option>Game</option>
+                    { category && category.map((item)=> {
+                        return (
+                    <option key={item.id} value={item.id}>{item.name}</option>
+
+                        )
+                    })}
                 </select>
             </div>
             <CKEditor 
@@ -73,9 +78,10 @@ import CKEditor from "react-ckeditor-component";
   }
 }
 const mapStateToProps = (state) => {
-    //console.log(state);
+    console.log(state);
     return {
-        auth:state.firebase.auth
+        auth:state.firebase.auth,
+        category: state.firestore.ordered.category
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -83,7 +89,9 @@ const mapDispatchToProps = (dispatch) => {
         addblog: (blog) => dispatch(blogAdd(blog))
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(AddBlog);
+export default compose(connect(mapStateToProps,mapDispatchToProps),firestoreConnect([
+    {collection:'category'}
+]))(AddBlog);
 
 
 // CK editor will come
