@@ -4,6 +4,8 @@ import { BlogUpdate,cancelUpdateBlog } from '../../store/actions/blogAction';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import AddBlog from './AddBlog';
+import CKEditor from "react-ckeditor-component";
+
 
 
  class adminBlogUpdate extends React.Component {
@@ -65,10 +67,13 @@ import AddBlog from './AddBlog';
                     <option>Game</option>
                 </select>
             </div>
-            <div className="from-group">
-                <label htmlFor="content">Content</label>
-                <textarea name="content" id="content" cols="30" rows="10" className="form-control" value={this.state.content} onChange={this.handleChange}></textarea>
-            </div>
+            <CKEditor 
+              activeClass="p10" 
+              content={this.state.content} 
+              events={{
+                "change": this.onChangeCk
+              }}
+            />
             <div className="form-group">
                 <label htmlFor="metatag">MetaTag</label>
                 <input type="text" className="form-control" id='metatag' value={this.state.metatag} onChange={this.handleChange}/>
