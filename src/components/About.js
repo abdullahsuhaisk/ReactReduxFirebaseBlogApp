@@ -1,46 +1,43 @@
-import React from 'react';
+import React from 'react'
+import {firestoreConnect} from 'react-redux-firebase';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {firestoreConnect} from 'react-redux-firebase';
+import ShowAbout from './layout/ShowAbout';
+import UpdateAbout from './layout/UpdateAbout';
 
-class About extends React.Component{
-render(){
+const About = (props) => {
 
-    const {about}=this.props
-    console.log(about)
-      return (
-        <div className="text-center">
-            <br />
-            <div className="row">
-                <div className="col-md-4">
-                <div className="card text-white bg-info mb-3" style={{width:"18rem"}}>
-              <img className="card-img-top" src={require('./CvAssets/images/profile.jpg')} style={{width:"18rem"}} />
-                <div className="card-header">A.Süha Işık</div>
-                <div className="card-body">
-                  <h5 className="card-title">Full Stack & Mobile Developer</h5>
-                  <p className="card-text">Write Me </p>
-                </div>
-                </div>
-                </div>
-                <div className="col-md-7">
+    const {authId,adminDoc,personelInfo} = props
+    //console.log(personelInfo);
 
-          {
-              about && about.about
-          }
-                </div>
-            </div>
-
-        </div>
-      )
-    }
-
+    const renderContent = (authId,adminDoc) => {
+        if(authId !== adminDoc) {
+            return (
+                <ShowAbout about={personelInfo} />
+            )
+        }
+        else return( <UpdateAbout />)
+    }    
+  return (
+    <div>
+        {renderContent(authId, adminDoc)}
+    </div>
+  )
 }
-
 const mapStateToProps = (state) => {
-    const datas = state.firestore.data.personelInfo
-    const about = datas ? datas['about'] : null
-    return{
-        about:about
+    //console.log(state);
+    const admin = state.firestore.ordered.admin
+    const adminDoc = admin && admin[0].docUid
+    const info = state.firestore.data.personelInfo
+    const personelInfo = info && info['about']
+    //console.log(personelInfo);
+    return {
+        authId: state.firebase.auth.uid,
+        adminDoc:adminDoc,
+        personelInfo:personelInfo
     }
 }
-export default compose(connect(mapStateToProps),firestoreConnect([{collection:'personelInfo'}]))(About);
+export default compose(connect(
+    mapStateToProps
+),
+    firestoreConnect([{collection:'admin'},{collection:'personelInfo'}]))(About);

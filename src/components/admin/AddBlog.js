@@ -21,7 +21,6 @@ import { firestoreConnect } from 'react-redux-firebase';
             [e.target.id ] : e.target.value
         })
     }
-
     handleClick = (e) => {
         e.preventDefault();
         //console.log(this.state);

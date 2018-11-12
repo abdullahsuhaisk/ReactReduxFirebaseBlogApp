@@ -9,7 +9,6 @@ const initState = {
     update:0,
     categories:[]
 };
-
 const blogReducer = (state=initState,action) => {
     switch (action.type) {
         case 'ADD_BLOG_SUCCES':

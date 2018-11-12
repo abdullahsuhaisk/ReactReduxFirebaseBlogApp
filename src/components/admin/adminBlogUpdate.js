@@ -27,21 +27,24 @@ import { firestoreConnect } from 'react-redux-firebase';
             [e.target.id ] : e.target.value
         })
     }
-
     handleClick = (e) => {
         e.preventDefault();
         //console.log(this.props);
         this.props.updateblog(this.state); 
-
     }
-
     handleClickCancel = (e) => {
         e.preventDefault();
         //console.log(this.props);
         //this.props.history.push('/admin');
         this.props.cancelUpdateBlog();
     }
-
+    onChangeCk = (evt) => {
+        var newContent = evt.editor.getData();
+        this.setState({
+            content: newContent
+        })
+        console.log(this.state)
+    }
   render(){
     //console.log(this.state)
       //Admin Logic will come here
@@ -66,7 +69,6 @@ import { firestoreConnect } from 'react-redux-firebase';
                     { category && category.map((item)=> {
                         return (
                             <option key={item.id} value={item.id}>{item.name}</option>
-
                         )
                     })}
                 </select>
@@ -96,11 +98,9 @@ import { firestoreConnect } from 'react-redux-firebase';
         </form>
         </div>
         </div>
-        
       )
       return (<AddBlog />)
   }
- 
 }
 const mapStateToProps = (state) => {
     //console.log(state);

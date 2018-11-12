@@ -48,7 +48,7 @@ const Cv = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    //console.log(state);
+    console.log(state);
     const datas = state.firestore.data.personelInfo;
     const carrier = datas ? datas['carrier'] : null;
     const personelinfo = datas ? datas['info'] : null;
